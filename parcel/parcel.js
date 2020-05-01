@@ -20,7 +20,7 @@ router.post(
       }
 
       if (id !== 1) {
-        res.json({
+        res.status(404).json({
           message: "User not found",
         });
       }
@@ -172,7 +172,7 @@ router.put(
       (err, results) => {
         const user = results.rows[0];
         if (results.rowCount == 0) {
-          res.json({ message: "User not found" });
+          res.status(404).json({ message: "User not found" });
         }
         if (user.status == "Pending") {
           pool.query(
